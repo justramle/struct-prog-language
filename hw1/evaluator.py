@@ -9,7 +9,7 @@ def evaluate(ast):
     
     # Handling unary negation
     if ast["tag"] == "negate":
-        return evaluate(ast["node"]) * (-1)
+        return evaluate(ast["value"]) * (-1)
 
     # Recursive cases: evaluate the left and right sub-trees and apply the operation
     left_value = evaluate(ast["left"])

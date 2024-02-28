@@ -35,7 +35,7 @@ def parse_factor(tokens):
     if tag == "-":
         # parse the expression follow by "-"
         child_node, tokens = parse_factor(tokens[1:])
-        return create_node("negate", node=child_node), tokens
+        return create_node("negate", value=child_node), tokens
     if tag == "number":
         return create_node("number", value=token["value"]), tokens[1:]
     if tag == "(":
