@@ -6,10 +6,6 @@ def evaluate(ast):
             int,
         ], f"unexpected ast numeric value {ast['value']} type is a {type(ast['value'])}."
         return ast["value"]
-    
-    # Handling unary negation
-    if ast["tag"] == "negate":
-        return evaluate(ast["node"]) * (-1)
 
     # Recursive cases: evaluate the left and right sub-trees and apply the operation
     left_value = evaluate(ast["left"])
@@ -40,19 +36,6 @@ def equals(code, expected_result):
         result == expected_result
     ), f"ERROR: When executing {[code]}, expected {[expected_result]}, got {[result]}."
 
-def test_unary_negation():
-    print("Testing unary negation")
-    #Test simple negation
-    equals("-5", -5)
-    #Test unary negation with expression
-    equals("-(1+2)", -3)
-    #Test double negation
-    equals("5 + --5", 10)
-    #Test negation with multiplication
-    equals("-2*3", -6)
-    #Test negation with division
-    equals("-10/2",- 5)
-    print("Unary negation test passed")
 
 def test_evaluate_simple_addition():
     print("testing simple addition.")
@@ -112,5 +95,4 @@ if __name__ == "__main__":
     test_evaluate_subtraction()
     test_evaluate_division()
     test_evaluate_division_by_zero()
-    test_unary_negation()
     print("done.")
