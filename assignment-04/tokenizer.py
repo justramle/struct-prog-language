@@ -20,12 +20,14 @@ patterns = [
     [r"extern", "extern"],  # function keyword
     [r"input", "input"],  # function keyword
     [r"exit", "exit"],  # exit keyword
+    [r"repeat", "repeat"],  # repeat keyword
+    [r"until", "until"],    # until keyword
     [r"[a-zA-Z_][a-zA-Z0-9_]*", "<identifier>"],  # identifiers
     [r"\+", "+"],
+    [r"%", "%"],    # modulus operator
     [r"--", "--"],
     [r"-", "-"],
     [r"\*", "*"],
-    [r"%", "%"],    # modulus operator
     [r"/", "/"],
     [r"\(", "("],
     [r"\)", ")"],
@@ -102,7 +104,7 @@ def tokenize(characters):
 
 def test_simple_tokens():
     print("testing simple tokens...")
-    examples = ".,[,],+,-,*,%,/,(,),{,},;,!,&&,||,<,>,<=,>=,==,!=".split(",")
+    examples = ".,[,],+,-,*,/,(,),{,},;,!,&&,||,<,>,<=,>=,==,!=".split(",")
     for example in examples:
         t = tokenize(example)[0]
         assert t["tag"] == example
@@ -224,6 +226,9 @@ def test_keywords():
         "input",
         "print",
         "exit",
+        "repeat",
+        "until",
+        
     ]:
         t = tokenize(keyword)
         assert len(t) == 1
@@ -251,3 +256,4 @@ if __name__ == "__main__":
     test_keywords()
     test_comments()
     print("done.")
+
